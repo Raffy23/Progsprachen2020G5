@@ -1,0 +1,5 @@
+{
+append = x1->y1->cond x1 {head=x1 head, tail=append(x1 tail)y1} y1,
+gen = x2->cond x2 (append (gen(sub x2 1)) {head=x2, tail={}}) {}
+}
+gen 3

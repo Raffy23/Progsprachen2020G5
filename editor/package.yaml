@@ -1,0 +1,81 @@
+name:                editor
+version:             0.1.0.0
+license:             MIT
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+    - ncurses
+    - text
+    - array
+    - parsec
+    - split
+  ghc-options:
+    - -Wall
+    - -Werror
+    - -Wno-name-shadowing
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wredundant-constraints
+
+executables:
+  editor-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - editor
+
+  #editor-static:
+  #  main:                Main.hs
+  #  source-dirs:
+  #    - src
+  #    - app
+  #  dependencies:
+  #    - ncurses
+  #    - text
+  #    - array
+  #    - parsec
+  #    - split
+  #  ghc-options:
+  #    - -threaded
+  #    - -static
+  #    - -optl-static
+  #    - -optl-pthread
+  #    - -optc-Os
+  #    #- -pgmc musl-gcc
+  #    #- -pgml musl-gcc
+  #  # These don't work ...
+  #  #extra-libs-dirs: /home/raphael/lib/ncurses-6.2/lib/
+  #  #extra-libraries: gpm
+  #  cc-options: -v
+  #  ld-options: -v -L/home/raphael/lib/ncurses-6.2/lib/
+
+tests:
+  editor-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - editor

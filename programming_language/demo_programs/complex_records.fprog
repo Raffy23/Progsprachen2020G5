@@ -1,0 +1,1 @@
+{a=x->y->add(mult x x)y, b=a 2, c=b 3} sub(b 5)c

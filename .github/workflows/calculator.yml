@@ -1,0 +1,27 @@
+name: Build & test calculator
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      working-directory: calculator
+      run: cargo build --verbose
+    - name: Run tests
+      working-directory: calculator
+      run: cargo test --verbose
+    - name: Run linter (clippy)
+      working-directory: calculator
+      run: cargo clippy --all-targets --all-features -- -D warnings
